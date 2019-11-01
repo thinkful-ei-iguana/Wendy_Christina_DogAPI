@@ -1,17 +1,6 @@
 'use strict';
 
-//
-function getDogImage() {
-  fetch('https://dog.ceo/api/breeds/image/random/50')
-    .then(response => response.json()) 
-    .then(responseJson => {
-      let test = responseJson.message[0];
-      console.log(test);
-      console.log(responseJson);
-    });
-};
-
-//generate html for the input forms
+//allows user to input number of images to display
 
 let formMaker = function () {
   let form = `
@@ -22,24 +11,52 @@ let formMaker = function () {
   $('form').prepend(form);
 };
 
-formMaker();
+//user input
 
-//function displayDogs(dogNumber) {
-
-
-
-
-
-function watchForm() {
+function numberOfImages() {
   $('form').submit(event => {
     event.preventDefault();
     const number = $('.dog-img').val();
-    getDogImage();
-    console.log(number);
+    getDogImage(number);
   });
 }
 
+//renders the dog images on screen
+//displays each item in array until the index of the number passed through
+function getDogImage(index) {
+  fetch('https://dog.ceo/api/breeds/image/random/4')
+    .then(response => response.json()) 
+    .then(responseJson => {
+      extractData(responseJson);
+      let userInput = $('.dog-img').val();
+      
+    });
+};
+
+//render images on screen
+function imageHtml() {
+  let imagesToDisplay = `
+  <img src="https://images.dog.ceo/breeds/mastiff-english/1.jpg">
+  `;
+  $('.images').html(imagesToDisplay);
+};
+
+//display the images
+function displayImages(number) {
+  $('form').submit(event => {
+    event.preventDefault();
+    imageHtml();
+  });
+}
+
+let extractData = function(data) {
+  data.message.forEach(url => console.log(url));
+};
+
+
 $(function() {
   console.log('App loaded! Waiting for submit!');
-  watchForm();
+  numberOfImages();
+  formMaker();
+  displayImages();
 });
