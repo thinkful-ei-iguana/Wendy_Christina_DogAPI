@@ -24,11 +24,12 @@ function numberOfImages() {
 //renders the dog images on screen
 //displays each item in array until the index of the number passed through
 function getDogImage(index) {
-  fetch('https://dog.ceo/api/breeds/image/random/4')
+  fetch('https://dog.ceo/api/breeds/image/random/10')
     .then(response => response.json()) 
     .then(responseJson => {
       extractData(responseJson);
       let userInput = $('.dog-img').val();
+
       
     });
 };
@@ -52,7 +53,6 @@ function displayImages(number) {
 let extractData = function(data) {
   data.message.forEach(url => console.log(url));
 };
-
 
 $(function() {
   console.log('App loaded! Waiting for submit!');
