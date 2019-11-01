@@ -2,10 +2,13 @@
 
 //
 function getDogImage() {
-  fetch('https://dog.ceo/api/breeds/image/random/4')
-    .then(response => response.json())
- 
-    .then(responseJson => console.log(responseJson));
+  fetch('https://dog.ceo/api/breeds/image/random/50')
+    .then(response => response.json()) 
+    .then(responseJson => {
+      let test = responseJson.message[0];
+      console.log(test);
+      console.log(responseJson);
+    });
 };
 
 //generate html for the input forms
@@ -21,13 +24,18 @@ let formMaker = function () {
 
 formMaker();
 
+//function displayDogs(dogNumber) {
+
+
 
 
 
 function watchForm() {
   $('form').submit(event => {
     event.preventDefault();
+    const number = $('.dog-img').val();
     getDogImage();
+    console.log(number);
   });
 }
 
