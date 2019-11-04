@@ -13,50 +13,60 @@ let formMaker = function () {
 
 //user input
 
-function numberOfImages() {
-  $('form').submit(event => {
-    event.preventDefault();
-    const number = $('.dog-img').val();
-    getDogImage(number);
-  });
-}
+//function numberOfImages() {
+//  $('form').submit(event => {
+//    event.preventDefault();
+//    const number = $('.dog-img').val();
+//    getDogImage(number);
+//  });
+//}
 
 //renders the dog images on screen
 //displays each item in array until the index of the number passed through
-function getDogImage(index) {
+function getDogImage(number) {
   fetch('https://dog.ceo/api/breeds/image/random/4')
     .then(response => response.json()) 
-    .then(responseJson => {
-      extractData(responseJson);
-      let userInput = $('.dog-img').val();
+    .then(jsonData => displayImages(jsonData));
       
-    });
-};
+      
+      
+  
+}
 
 //render images on screen
 function imageHtml() {
-  let imagesToDisplay = `
-  <img src="https://images.dog.ceo/breeds/mastiff-english/1.jpg">
-  `;
-  $('.images').html(imagesToDisplay);
-};
+ $('.js-numberEntrySumbit').on('sumbit', e => {
+  e.preventDefault();
+  $('.js-dogGallery').html('');
+  const number = $('.numberOfDogs').val();
+  if (number > 50 || number < 1) {
+    alert('Only a number between 1 and 50 please');    
+  }else {
+    getDogImage(number);
+  }
+ })
+}
 
 //display the images
 function displayImages(number) {
-  $('form').submit(event => {
-    event.preventDefault();
-    imageHtml();
+  data.message.forEach(link => {
+    console.log(link);
+    $('.js-dogGallery').append(`<img src='${link}' alt="dog"></img>`);
+
   });
+   
 }
 
-let extractData = function(data) {
-  data.message.forEach(url => console.log(url));
+function(main) {
+  imageHtml();
+
 };
 
 
-$(function() {
-  console.log('App loaded! Waiting for submit!');
-  numberOfImages();
-  formMaker();
-  displayImages();
-});
+
+//$(function() {
+//  console.log('App loaded! Waiting for submit!');
+//  numberOfImages();
+//  formMaker();
+//  displayImages();
+//});
