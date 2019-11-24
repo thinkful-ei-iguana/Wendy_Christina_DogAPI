@@ -1,7 +1,5 @@
 function getDogImage() {
-  let dogImagesDisplayed = $("#number-images").val();
-  console.log(dogImagesDisplayed);
-  fetch(`https://dog.ceo/api/breeds/image/random/${dogImagesDisplayed}`)
+  fetch("https://dog.ceo/api/breed/hound/images/random")
     .then(response => response.json())
     .then(jsonData => displayImages(jsonData))
     .catch(error => alert("Try again."));
@@ -19,10 +17,9 @@ function createImageDisplay(responseJson) {
 
 // returns an array, need to map over the array
 function displayImages(responseJson) {
-  console.log(responseJson);
-  let imageDisplay = createImageDisplay(responseJson);
-
-  $(".results-img").replaceWith(`${imageDisplay}`);
+  $(".results-img").replaceWith(
+    `<img src="${responseJson.message}" class="results-img" alt="placeholder" />`
+  );
   $(".results").removeClass("hidden");
 }
 

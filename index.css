@@ -1,16 +1,25 @@
 * {
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: 'Roboto', sans-serif;
-  }
-  
-  .container {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  
-  .images {
-      width: 200px;
-  }
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.img-container {
+  max-width: 1600px;
+  height: 400px;
+  width: 400px;
+  display: flex;
+  flex-direction: row;
+  padding: 40px;
+}
+
+.hidden {
+  display: none;
+}
